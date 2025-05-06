@@ -12,7 +12,9 @@ import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
 import MyOrders from './pages/MyorderPage';
 import AdminProductPanel from './pages/Admin';
-
+import MyProfile from './pages/MyProfile';
+import MyAddress from './pages/My Address';
+import UserDetail from './pages/UserDetail';
 
 function App() {
   return (
@@ -26,11 +28,23 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/products" element={<ProductsPage />} />
                 <Route path="/products/:id" element={<ProductDetailPage />} />
-                <Route path="/cart" element={<CartPage />} />
                 <Route path="/checkout" element={<CheckoutPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
-                <Route path="/myorders" element={<MyOrders />} />
+                <Route path="/cart" element={<CartPage />} />
+                
+
+
+                <Route path="/myprofile"  element={<MyProfile />} >
+
+
+                <Route path="myaddress" element={<MyAddress/>} />
+                <Route index  element={<UserDetail/>} />
+                <Route path="myorders" element={<MyOrders />} />
+
+                </Route>
+
+
                 <Route path="/admin" element={<AdminProductPanel />} />
 
               </Routes>

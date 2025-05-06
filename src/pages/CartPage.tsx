@@ -75,9 +75,9 @@ const CartPage: React.FC = () => {
                               {item.name}
                             </Link>
                           </h3>
-                          <p className="ml-4 text-lg font-medium text-gray-900">${(item.price * item.quantity).toFixed(2)}</p>
+                          <p className="ml-4 text-lg font-medium text-gray-900">₹{(item.price * item.quantity).toFixed(2)}</p>
                         </div>
-                        <p className="mt-1 text-sm text-gray-500">${item.price.toFixed(2)} each</p>
+                        <p className="mt-1 text-sm text-gray-500">₹{item.price.toFixed(2)} each</p>
                       </div>
                       
                       <div className="mt-4 flex justify-between items-center">
@@ -138,25 +138,25 @@ const CartPage: React.FC = () => {
                 <div className="space-y-4">
                   <div className="flex justify-between">
                     <p className="text-gray-600">Subtotal</p>
-                    <p className="text-gray-900 font-medium">${totalPrice.toFixed(2)}</p>
+                    <p className="text-gray-900 font-medium">₹{totalPrice.toFixed(2)}</p>
                   </div>
                   
                   <div className="flex justify-between">
                     <p className="text-gray-600">Shipping</p>
                     <p className="text-gray-900 font-medium">
-                      {totalPrice >= 50 ? 'Free' : '$4.99'}
+                      {totalPrice >= 50 ? 'Free' : '₹4.99'}
                     </p>
                   </div>
                   
                   <div className="flex justify-between">
                     <p className="text-gray-600">Tax</p>
-                    <p className="text-gray-900 font-medium">${(totalPrice * 0.07).toFixed(2)}</p>
+                    <p className="text-gray-900 font-medium">₹{(totalPrice * 0.07).toFixed(2)}</p>
                   </div>
                   
                   <div className="border-t border-gray-200 pt-4 flex justify-between">
                     <p className="text-lg font-medium text-gray-900">Total</p>
                     <p className="text-lg font-bold text-gray-900">
-                      ${(totalPrice + (totalPrice >= 50 ? 0 : 4.99) + (totalPrice * 0.07)).toFixed(2)}
+                      ₹{(totalPrice + (totalPrice >= 50 ? 0 : 4.99) + (totalPrice * 0.07)).toFixed(2)}
                     </p>
                   </div>
                 </div>

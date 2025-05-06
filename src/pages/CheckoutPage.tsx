@@ -4,7 +4,7 @@ import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
 
-interface ShippingInfo {
+interface shippingInfo {
   fullName: string;
   address: string;
   city: string;
@@ -29,7 +29,7 @@ const CheckoutPage: React.FC = () => {
   const navigate = useNavigate();
   
   const [step, setStep] = useState(1);
-  const [shippingInfo, setShippingInfo] = useState<ShippingInfo>({
+  const [shippingInfo, setshippingInfo] = useState<shippingInfo>({
     fullName: user?.name || '',
     address: '',
     city: '',
@@ -90,7 +90,7 @@ const CheckoutPage: React.FC = () => {
   // Redirect to cart if cart is empty
   React.useEffect(() => {
     if (items.length === 0 && !orderComplete) {
-      navigate('/cart');
+      navigate('cart');
     }
   }, [items, navigate, orderComplete]);
 
@@ -137,7 +137,7 @@ const CheckoutPage: React.FC = () => {
 
   const handleShippingChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setShippingInfo(prev => ({
+    setshippingInfo(prev => ({
       ...prev,
       [name]: value
     }));
@@ -176,6 +176,10 @@ const CheckoutPage: React.FC = () => {
             </div>
             
             <p className="mt-6 text-gray-600">
+
+
+
+
               We've sent a confirmation email to your email address with all the details of your order.
             </p>
             
@@ -232,6 +236,8 @@ const CheckoutPage: React.FC = () => {
           </nav>
         </div>
         
+
+        {/* address section */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             {step === 1 && (
@@ -571,7 +577,7 @@ const CheckoutPage: React.FC = () => {
                         <div>
                           <div className="flex justify-between text-sm font-medium text-gray-900">
                             <h3>{item.name}</h3>
-                            <p className="ml-4">${(item.price * item.quantity).toFixed(2)}</p>
+                            <p className="ml-4">₹{(item.price * item.quantity).toFixed(2)}</p>
                           </div>
                           <p className="mt-1 text-sm text-gray-500">Qty {item.quantity}</p>
                         </div>
@@ -584,24 +590,24 @@ const CheckoutPage: React.FC = () => {
               <div className="border-t border-gray-200 pt-4 mt-6">
                 <div className="flex justify-between text-sm font-medium">
                   <p className="text-gray-600">Subtotal</p>
-                  <p className="text-gray-900">${totalPrice.toFixed(2)}</p>
+                  <p className="text-gray-900">₹{totalPrice.toFixed(2)}</p>
                 </div>
                 
                 <div className="flex justify-between text-sm font-medium mt-2">
                   <p className="text-gray-600">Shipping</p>
                   <p className="text-gray-900">
-                    {totalPrice >= 50 ? 'Free' : '$4.99'}
+                    {totalPrice >= 50 ? 'Free' : '₹4.99'}
                   </p>
                 </div>
                 
                 <div className="flex justify-between text-sm font-medium mt-2">
                   <p className="text-gray-600">Tax (7%)</p>
-                  <p className="text-gray-900">${(totalPrice * 0.07).toFixed(2)}</p>
+                  <p className="text-gray-900">₹{(totalPrice * 0.07).toFixed(2)}</p>
                 </div>
                 
                 <div className="flex justify-between text-base font-medium text-gray-900 mt-4">
                   <p>Total</p>
-                  <p>${(totalPrice + (totalPrice >= 50 ? 0 : 4.99) + (totalPrice * 0.07)).toFixed(2)}</p>
+                  <p>₹{(totalPrice + (totalPrice >= 50 ? 0 : 4.99) + (totalPrice * 0.07)).toFixed(2)}</p>
                 </div>
               </div>
             </div>
@@ -613,3 +619,11 @@ const CheckoutPage: React.FC = () => {
 };
 
 export default CheckoutPage;
+
+
+
+
+
+
+
+

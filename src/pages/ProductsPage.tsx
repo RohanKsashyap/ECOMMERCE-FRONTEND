@@ -171,6 +171,9 @@ const ProductsPage: React.FC = () => {
             </div>
           </div>
 
+
+    
+
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
             {/* Filters */}
             <div className={`lg:block ${mobileFiltersOpen ? 'block' : 'hidden'} lg:col-span-1`}>
@@ -214,10 +217,10 @@ const ProductsPage: React.FC = () => {
                       )}
                       {filters.priceRange !== 'all' && (
                         <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
-                          {filters.priceRange === 'under50' && 'Under $50'}
-                          {filters.priceRange === '50to100' && '$50 - $100'}
-                          {filters.priceRange === '100to200' && '$100 - $200'}
-                          {filters.priceRange === 'over200' && 'Over $200'}
+                          {filters.priceRange === 'under50' && 'Under ₹50'}
+                          {filters.priceRange === '50to100' && '₹50 - ₹100'}
+                          {filters.priceRange === '100to200' && '₹100 - ₹200'}
+                          {filters.priceRange === 'over200' && 'Over ₹200'}
                           <button
                             type="button"
                             className="ml-1 text-indigo-500 hover:text-indigo-600"
@@ -356,7 +359,7 @@ const ProductsPage: React.FC = () => {
                           onChange={() => handleFilterChange('priceRange', 'under50')}
                         />
                         <label htmlFor="price-under50" className="ml-3 text-sm text-gray-600">
-                          Under $50
+                          Under ₹50
                         </label>
                       </div>
                       
@@ -370,7 +373,7 @@ const ProductsPage: React.FC = () => {
                           onChange={() => handleFilterChange('priceRange', '50to100')}
                         />
                         <label htmlFor="price-50to100" className="ml-3 text-sm text-gray-600">
-                          $50 - $100
+                          ₹50 - ₹100
                         </label>
                       </div>
                       
@@ -384,7 +387,7 @@ const ProductsPage: React.FC = () => {
                           onChange={() => handleFilterChange('priceRange', '100to200')}
                         />
                         <label htmlFor="price-100to200" className="ml-3 text-sm text-gray-600">
-                          $100 - $200
+                          ₹100 - ₹200
                         </label>
                       </div>
                       
@@ -398,7 +401,7 @@ const ProductsPage: React.FC = () => {
                           onChange={() => handleFilterChange('priceRange', 'over200')}
                         />
                         <label htmlFor="price-over200" className="ml-3 text-sm text-gray-600">
-                          Over $200
+                          Over ₹200
                         </label>
                       </div>
                     </div>

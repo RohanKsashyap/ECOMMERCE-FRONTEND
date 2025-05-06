@@ -69,7 +69,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
         
         <div className="flex justify-between items-center">
-          <span className="text-xl font-bold text-gray-900">${product.price.toFixed(2)}</span>
+          <span className="text-xl font-bold text-gray-900">₹{product.price.toFixed(2)}</span>
           <button 
             onClick={handleAddToCart}
             className="p-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-colors"

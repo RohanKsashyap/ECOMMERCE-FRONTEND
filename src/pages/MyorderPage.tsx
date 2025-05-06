@@ -59,7 +59,7 @@ const MyOrders = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-indigo-600 text-white text-lg font-semibold">
+      <div className="flex items-center justify-center min-h-screen bg-border-sky-100 text-white text-lg font-semibold">
         Loading orders...
       </div>
     );
@@ -67,22 +67,22 @@ const MyOrders = () => {
 
   if (error) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-indigo-600 text-white text-lg font-semibold">
+      <div className="flex items-center justify-center min-h-screen bg-border-sky-100 text-white text-lg font-semibold">
         {error}
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-indigo-600 text-white p-6">
+    <div className="min-h-screen bg-border-sky-100 text-black p-6">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold mb-6 text-center">Your Orders</h2>
+        <h2 className="text-3xl font-bold mb-6 text-center ml-24">Your Orders</h2>
         {orders.length === 0 ? (
           <p className="text-center text-lg">No orders found.</p>
         ) : (
           <ul className="space-y-4">
             {orders.map((order) => (
-              <li key={order._id} className="border border-white p-4 rounded-lg shadow-lg bg-white text-indigo-600">
+              <li key={order._id} className="border border-white p-4 rounded-lg shadow-lg bg-white text-black">
                 <p className="font-semibold text-lg">Order ID: {order._id}</p>
                 <p className="text-sm text-gray-500">Placed on: {new Date(order.createdAt).toLocaleDateString()}</p>
                 <p className="font-semibold">Total Price: ${order.totalPrice.toFixed(2)}</p>
