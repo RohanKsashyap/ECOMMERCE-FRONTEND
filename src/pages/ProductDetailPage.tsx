@@ -27,7 +27,7 @@ const ProductDetailPage: React.FC = () => {
     const fetchProduct = async () => {
       setLoading(true);
       try {
-        const { data } = await axios.get(`http://localhost:8000/api/products/${id}`);
+        const { data } = await axios.get(`https://ecommerce-backend-d1fg.onrender.com/api/products/${id}`);
         const productData = {
           _id: data._id,
           id: data.id,

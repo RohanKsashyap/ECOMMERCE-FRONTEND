@@ -32,7 +32,7 @@ const AdminProductPanel: React.FC = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get<Product[]>('http://localhost:8000/api/products');
+      const response = await axios.get<Product[]>('https://ecommerce-backend-d1fg.onrender.com/api/products');
       setProducts(response.data);
     } catch (error) {
       console.error('Failed to fetch products:', error);
@@ -51,9 +51,9 @@ const AdminProductPanel: React.FC = () => {
     e.preventDefault();
     try {
       if (isEditing && editId) {
-        await axios.put(`http://localhost:8000/api/products/${editId}`, form);
+        await axios.put(`https://ecommerce-backend-d1fg.onrender.com/api/products/${editId}`, form);
       } else {
-        await axios.post('http://localhost:8000/api/products', form);
+        await axios.post('https://ecommerce-backend-d1fg.onrender.com/api/products', form);
       }
       setForm(initialFormState);
       setIsEditing(false);
@@ -73,7 +73,7 @@ const AdminProductPanel: React.FC = () => {
   const handleDelete = async (id?: string) => {
     if (!id) return;
     try {
-      await axios.delete(`http://localhost:8000/api/products/${id}`);
+      await axios.delete(`https://ecommerce-backend-d1fg.onrender.com/api/products/${id}`);
       fetchProducts();
     } catch (error) {
       console.error('Failed to delete product:', error);

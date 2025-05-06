@@ -24,7 +24,7 @@ const HomePage: React.FC = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const { data } = await axios.get<Product[]>('http://localhost:8000/api/products');
+        const { data } = await axios.get<Product[]>('https://ecommerce-backend-d1fg.onrender.com/api/products');
         setProducts(data);
         setFeaturedProducts(data.slice(0, 4));
         setNewArrivals([...data].reverse());
