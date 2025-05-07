@@ -40,7 +40,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           };
           
           
-          const res = await axios.get('/api/users/profile', config);
+          const res = await axios.get('https://ecommerce-backend-d1fg.onrender.com/api/users/profile', config);
           setUser(res.data);
           setIsAuthenticated(true);
         } catch (err) {
