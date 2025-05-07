@@ -27,9 +27,19 @@ const MyAddress: React.FC = () => {
 
   const [savedAddresses, setSavedAddresses] = useState<Address[]>([]);
 
+  // Fetch saved addresses from backend on component mount
   useEffect(() => {
-    const stored = localStorage.getItem("myAddresses");
-    if (stored) setSavedAddresses(JSON.parse(stored));
+    const fetchAddresses = async () => {
+      try {
+        const res = await fetch("/api/user/addresses"); // Your backend API route
+        const data = await res.json();
+        setSavedAddresses(data.addresses);
+      } catch (err) {
+        toast.error("⚠️ Failed to fetch addresses");
+      }
+    };
+
+    fetchAddresses();
   }, []);
 
   const handleShippingChange = (
@@ -39,29 +49,58 @@ const MyAddress: React.FC = () => {
     setShippingInfo({ ...shippingInfo, [name]: value });
   };
 
-  const handleShippingSubmit = (e: FormEvent) => {
+  const handleShippingSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const updated = [...savedAddresses, shippingInfo];
-    setSavedAddresses(updated);
-    localStorage.setItem("myAddresses", JSON.stringify(updated));
-    toast.success("✅ Address saved successfully!");
-    setShippingInfo({
-      fullName: "",
-      address: "",
-      city: "",
-      state: "",
-      postalCode: "",
-      country: "India",
-      phone: "",
-    });
-    setShowForm(false);
+
+    try {
+      const res = await fetch("/api/user/addresses", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(shippingInfo),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setSavedAddresses([...savedAddresses, data.newAddress]);
+        toast.success("✅ Address saved successfully!");
+        setShippingInfo({
+          fullName: "",
+          address: "",
+          city: "",
+          state: "",
+          postalCode: "",
+          country: "India",
+          phone: "",
+        });
+        setShowForm(false);
+      } else {
+        toast.error(data.message || "Failed to save address");
+      }
+    } catch (err) {
+      toast.error("⚠️ Error saving address");
+    }
   };
 
-  const handleDeleteAddress = (index: number) => {
-    const updated = savedAddresses.filter((_, i) => i !== index);
-    setSavedAddresses(updated);
-    localStorage.setItem("myAddresses", JSON.stringify(updated));
-    toast.error("🗑️ Address deleted");
+  const handleDeleteAddress = async (index: number) => {
+    const addressToDelete = savedAddresses[index];
+    try {
+      const res = await fetch("/api/user/addresses", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone: addressToDelete.phone }), // Use phone or unique identifier
+      });
+
+      if (res.ok) {
+        const updated = savedAddresses.filter((_, i) => i !== index);
+        setSavedAddresses(updated);
+        toast.error("🗑️ Address deleted");
+      } else {
+        toast.error("Failed to delete address");
+      }
+    } catch (err) {
+      toast.error("⚠️ Error deleting address");
+    }
   };
 
   return (
@@ -89,7 +128,7 @@ const MyAddress: React.FC = () => {
                   onClick={() => handleDeleteAddress(idx)}
                   className="absolute top-2 right-2 text-gray-400 hover:text-red-600 text-sm"
                 >
-                <Trash2 />
+                  <Trash2 />
                 </button>
                 <h2 className="text-lg font-semibold text-sky-800">
                   {addr.fullName}
@@ -111,7 +150,7 @@ const MyAddress: React.FC = () => {
         {showForm && (
           <form
             onSubmit={handleShippingSubmit}
-            className="bg-white p-6 rounded-lg shadow border border-sky-100   "
+            className="bg-white p-6 rounded-lg shadow border border-sky-100"
           >
             <h2 className="text-xl font-semibold text-gray-800 mb-4">
               Shipping Information

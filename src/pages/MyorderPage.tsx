@@ -39,7 +39,7 @@ const MyOrders = () => {
     const fetchOrders = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("https://ecommerce-backend-d1fg.onrender.com/api/products/api/orders/myorders", {
+        const response = await fetch("https://ecommerce-backend-d1fg.onrender.com/api/orders/myorders", {
           headers: { Authorization: `Bearer ${token}` },
         });
 

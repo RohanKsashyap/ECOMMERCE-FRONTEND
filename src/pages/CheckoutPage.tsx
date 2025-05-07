@@ -115,7 +115,7 @@ const CheckoutPage: React.FC = () => {
     try {
       console.log(" Sending orderData:", orderData);
     
-      const { data } = await axios.post('http://localhost:8000/api/orders', orderData, {
+      const { data } = await axios.post('https://ecommerce-backend-d1fg.onrender.com/api/orders', orderData, {
         headers: {
           Authorization: `Bearer ${token}`,  // Ensure token is correct
           'Content-Type': 'application/json',
