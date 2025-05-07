@@ -31,7 +31,7 @@ const MyAddress: React.FC = () => {
   useEffect(() => {
     const fetchAddresses = async () => {
       try {
-        const res = await fetch("/api/user/addresses"); // Your backend API route
+        const res = await fetch("https://ecommerce-backend-d1fg.onrender.com/api/users/addresses"); // Your backend API route
         const data = await res.json();
         setSavedAddresses(data.addresses);
       } catch (err) {
@@ -53,7 +53,7 @@ const MyAddress: React.FC = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("/api/user/addresses", {
+      const res = await fetch("https://ecommerce-backend-d1fg.onrender.com/api/add/addresses", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(shippingInfo),
@@ -85,7 +85,7 @@ const MyAddress: React.FC = () => {
   const handleDeleteAddress = async (index: number) => {
     const addressToDelete = savedAddresses[index];
     try {
-      const res = await fetch("/api/user/addresses", {
+      const res = await fetch("https://ecommerce-backend-d1fg.onrender.com/api/user/addresses", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ phone: addressToDelete.phone }), // Use phone or unique identifier
