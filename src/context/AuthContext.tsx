@@ -92,7 +92,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
       };
       
-      const res = await axios.post('https://ecommerce-backend-d1fg.onrender.com/api/users/register', { name, email, password }, config);
+      const res = await axios.post('https://ecommerce-backend-d1fg.onrender.com/api/users/register',{ name, email, password }, config);
       
       localStorage.setItem('token', res.data.token);
       setToken(res.data.token);
